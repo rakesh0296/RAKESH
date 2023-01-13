@@ -1,0 +1,164 @@
+
+Setting environment for using XAMPP for Windows.
+welcome@DESKTOP-CQ4M044 c:\xampp
+# mysql -h localhost -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 13
+Server version: 10.4.24-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use item_master;
+Database changed
+MariaDB [item_master]> desc admin;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| USERNAME | varchar(50) | NO   | PRI | NULL    |       |
+| PASSWORD | varchar(50) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.103 sec)
+
+MariaDB [item_master]> select * from admin;
++----------+----------+
+| USERNAME | PASSWORD |
++----------+----------+
+| admin    | admin123 |
++----------+----------+
+1 row in set (0.001 sec)
+
+MariaDB [item_master]> desc customers;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| ID             | int(11)      | NO   | PRI | NULL    | auto_increment |
+| NAME           | varchar(20)  | NO   |     | NULL    |                |
+| CONTACT_NUMBER | varchar(10)  | NO   |     | NULL    |                |
+| ADDRESS        | varchar(100) | NO   |     | NULL    |                |
+| DOCTOR_NAME    | varchar(20)  | NO   |     | NULL    |                |
+| DOCTOR_ADDRESS | varchar(100) | NO   |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.006 sec)
+
+MariaDB [item_master]> select * from customers;
++----+----------+----------------+--------------------------+-------------+-----------------+
+| ID | NAME     | CONTACT_NUMBER | ADDRESS                  | DOCTOR_NAME | DOCTOR_ADDRESS  |
++----+----------+----------------+--------------------------+-------------+-----------------+
+|  4 | Kiran    | 1234567690     | minjur                   | dr dev      | tambaram East   |
+|  6 | Aditya   | 7365687269     | cmbt West                | dr arun     | chrompet West   |
+| 11 | Shivam   | 6862369896     | t.nagar West             | Dr suresh   | t.nagar East    |
+| 13 | Suthar   | 7622365694     | chennai Station          | Ramesh      | chennai Station |
+| 14 | Prakash  | 9802851472     | washermenpet-16, aaarani | Hari        | arani-12        |
++----+----------+----------------+--------------------------+-------------+-----------------+
+5 rows in set (0.000 sec)
+
+MariaDB [item_master]> desc invoices;
++----------------+---------+------+-----+---------------------+----------------+
+| Field          | Type    | Null | Key | Default             | Extra          |
++----------------+---------+------+-----+---------------------+----------------+
+| INVOICE_ID     | int(11) | NO   | PRI | NULL                | auto_increment |
+| NET_TOTAL      | double  | NO   |     | 0                   |                |
+| INVOICE_DATE   | date    | NO   |     | current_timestamp() |                |
+| CUSTOMER_ID    | int(11) | NO   |     | NULL                |                |
+| TOTAL_AMOUNT   | double  | NO   |     | NULL                |                |
+| TOTAL_DISCOUNT | double  | NO   |     | NULL                |                |
++----------------+---------+------+-----+---------------------+----------------+
+6 rows in set (0.006 sec)
+
+MariaDB [item_master]> select * from invoices;
++------------+-----------+--------------+-------------+--------------+----------------+
+| INVOICE_ID | NET_TOTAL | INVOICE_DATE | CUSTOMER_ID | TOTAL_AMOUNT | TOTAL_DISCOUNT |
++------------+-----------+--------------+-------------+--------------+----------------+
+|          1 |        30 | 2022-10-19   |          14 |           30 |              0 |
+|          2 |      2626 | 2022-10-19   |           6 |         2626 |              0 |
++------------+-----------+--------------+-------------+--------------+----------------+
+2 rows in set (0.001 sec)
+
+MariaDB [item_master]> desc medicines;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| ID            | int(11)      | NO   | PRI | NULL    | auto_increment |
+| NAME          | varchar(100) | NO   |     | NULL    |                |
+| PACKING       | varchar(20)  | NO   |     | NULL    |                |
+| GENERIC_NAME  | varchar(100) | NO   |     | NULL    |                |
+| SUPPLIER_NAME | varchar(100) | NO   |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.006 sec)
+
+MariaDB [item_master]> select * from medicines;
++----+-------+---------+----------------+----------------+
+| ID | NAME  | PACKING | GENERIC_NAME   | SUPPLIER_NAME  |
++----+-------+---------+----------------+----------------+
+|  1 | raj   | 10tab   | Paracetamole   | apollo PHARMA  |
+|  2 | raju  | 10tab   | Hdsgvkvajkcbja | Pharma         |
+|  4 | sekar | 15tab   | dolo           | mm PHARMA      |
+|  5 | dhana | 10tab   | fever          | kumaran pharma |
++----+-------+---------+----------------+----------------+
+4 rows in set (0.000 sec)
+
+MariaDB [item_master]> desc suppliers;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| ID             | int(11)      | NO   | PRI | NULL    | auto_increment |
+| NAME           | varchar(100) | NO   |     | NULL    |                |
+| EMAIL          | varchar(100) | NO   |     | NULL    |                |
+| CONTACT_NUMBER | varchar(10)  | NO   |     | NULL    |                |
+| ADDRESS        | varchar(100) | NO   |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.006 sec)
+
+MariaDB [item_master]> select * from suppliers;
++----+----------------------+-----------------------+----------------+----------------------+
+| ID | NAME                 | EMAIL                 | CONTACT_NUMBER | ADDRESS              |
++----+----------------------+-----------------------+----------------+----------------------+
+|  1 | Desai Pharma         | desai@gmail.com       | 9948724242     | Mahim East           |
+|  2 | BDPL PHARMA          | bdpl@gmail.com        | 8645632963     | Santacruz West       |
+|  9 | Kiran Pharma         | kiranpharma@gmail.com | 7638683637     | Andheri East         |
+| 10 | Rsrnrnrndnn          | ydj                   | 3737355538     | 3fndfndfndndfnfdndfn |
+| 11 | Dfnsfndfndf          | fnsn                  | 5475734385     | Ndnss4yrhrhdhrdhrh   |
+| 12 | SS Distributors      | ssdis@gamil.com       | 3867868752     | Matunga West         |
+| 13 | Avceve               | ehh                   | 3466626226     | Eteh266266262        |
+| 14 | Hrshrhrjher          | dzgdg                 | 4636347335     | Rhrswjrnswjn         |
+| 15 | Hmrxfmgtmt           | trmtrm gm tr          | 6553838835     | 38ejtdjtdxetjdt      |
+| 20 | Dtdxtkmtdshrrhhsrjrs | trmtrm gm tr          | 6553838835     | 38ejtdjtdxetjdt      |
+| 23 | Fndn                 | nena ena              | 3462462642     | Ebsbsdbsdndsnsdfns   |
+| 24 | Fndnbrwh             | nena ena              | 3462462642     | Ebsbsdbsdndsnsdfns   |
+| 25 | Jnentjrtj            | nena ena              | 3462462642     | Ebsbsdbsdndsnsdfns   |
+| 26 | Jerthjrtjtjr         | nena ena              | 3462462642     | Ebsbsdbsdndsnsdfns   |
+| 28 | Gahgkakbvkv          | nena ena              | 3462462642     | Ebsbsdbsdndsnsdfns   |
+| 29 | Hywhwhrhdw           | nena ena              | 3462462642     | Ebsbsdbsdndsnsdfns   |
++----+----------------------+-----------------------+----------------+----------------------+
+16 rows in set (0.001 sec)
+
+MariaDB [item_master]> desc medical_stock;
+ERROR 1146 (42S02): Table 'item_master.medical_stock' doesn't exist
+MariaDB [item_master]> desc medicines_stock;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| ID          | int(11)      | NO   |     | NULL    |       |
+| NAME        | varchar(100) | NO   |     | NULL    |       |
+| BATCH_ID    | varchar(20)  | NO   |     | NULL    |       |
+| EXPIRY_DATE | varchar(10)  | NO   |     | NULL    |       |
+| QUANTITY    | int(11)      | NO   |     | NULL    |       |
+| MRP         | double       | NO   |     | NULL    |       |
+| RATE        | double       | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+7 rows in set (0.006 sec)
+
+MariaDB [item_master]> select * from  medicines_stock;
++----+---------------+----------+-------------+----------+-------+------+
+| ID | NAME          | BATCH_ID | EXPIRY_DATE | QUANTITY | MRP   | RATE |
++----+---------------+----------+-------------+----------+-------+------+
+|  1 | Crosin        | CROS12   | 12/34       |        2 |  2626 |   26 |
+|  2 | Gelusil       | G327     | 12/42       |        0 |    15 |   12 |
+|  3 | Dolo 650      | DOLO327  | 01/23       |        3 |    30 |   24 |
+|  4 | combfrom Plus | NI325    | 05/22       |        3 | 32.65 |   28 |
++----+---------------+----------+-------------+----------+-------+------+
+4 rows in set (0.001 sec)
+
+MariaDB [item_master]>
